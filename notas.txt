@@ -1,3 +1,21 @@
-Para ver si tenemos om
+[>]
+$
 
-Para iniciar el servicio en linux de mo
+
+
+[>] Para ver que si tenemos instalado mongodb
+$ mongod --version
+
+[>] Para ver la version de la shell de mongo
+$ mongo --version
+
+[>] Iniciar el servidor de mongoDb
+$ mongod
+[><] Puerto 27017
+
+[>] Abrir shell de mongo
+$ mongo
+
+[>] Ver la bases de datos creadas
+$ show dbs
+
