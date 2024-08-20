@@ -4,18 +4,132 @@ $
 
 
 [>] Para ver que si tenemos instalado mongodb
-$ mongod --version
+    $ mongod --version
+
+
 
 [>] Para ver la version de la shell de mongo
-$ mongo --version
+    $ mongo --version
+
+
 
 [>] Iniciar el servidor de mongoDb
-$ mongod
-[><] Puerto 27017
+    $ mongod
+    [><] Puerto 27017
+
+
 
 [>] Abrir shell de mongo
-$ mongo
+    $ mongo
+
+
 
 [>] Ver la bases de datos creadas
-$ show dbs
+    $ show dbs
+
+
+
+[>] Ver cual es la base seleccionada actual
+    $ db
+
+
+
+[>] Seleccionar/Crear una base de datos
+    $ use [nombre de la base]
+
+
+
+[>] Crear un usuario para la base de datos
+    $ use [nombre de la base]
+    $ db.createUser(
+        {
+        user:'name', 
+        pwd:'123', 
+        roles:['readWrite','dbAdmin']
+        }
+    );
+
+
+
+[>] Ver las colecciones de la base
+    $ show collections
+
+    Las tablas son colecciones y se van creando conforme se insertan las tablas.
+    Para este ejemplo la coleccion se llamara clientes y la base sera misclientes que hace la referencia a db
+
+
+
+[>] Insertar un registro en la coleccion
+    $ db.clientes.insert(
+        {
+            "nombre": "Juan",
+            "apellido" : "Perez"
+        }
+    )
+    Cuando se inserta un nuevo registro en mongo db hay un algoritmo el cual genera un hash para indexar lo datos y agrega un ID unico 
+    _id, ObjectId("uyasdvaysdasd3as1da56sd3asvagga231")
+
+
+
+
+[>] Insertar multiples registros a la coleccion
+    $ db.clientes.insert(
+        [
+            {
+            "nombre": "Juan",
+            "apellido" : "Perez"
+            },
+            {
+                "nombre": "Juan2",
+                "apellido" : "Perez2"
+            },
+            {
+                "nombre": "Juan3",
+                "apellido" : "Perez3"
+            }
+        ]  
+    )
+    Se tiene que insertar de forma de un arreglo
+
+
+
+[>] Ver todos los datos de una coleccion
+    $ db.clientes.find()
+
+
+
+[>] Ver todos los datos de una coleccion como json mas entendible
+    $ db.clientes.find().pretty()
+
+
+
+[>] Buscar un ID_object
+    $ db.clientes.find({_id: ObjectId("35a1jnbasdhiud21acs8a4cs6a65asc5")})
+
+
+    
+[>] Buscar un por medio de un parametro/propiedad
+    $ db.clientes.find({llave: 'valor'})
+
+
+
+[>] Actualizar un registro por propiedad/parametro
+    $ db.clientes.update(
+        {llave: 'valor'} <<<<<<<< lo que va a buscar
+        {
+            llave: 'valor',
+            llave: 'valor',
+            llave: 'valor'
+        }  <<<<<<<<<<<<<<<<<<<<<<< json que tiene que tener los cambios o llaves nuevas
+    )
+
+
+
+[>] Agregar una llave sin que pongas las demas llaves propiedad/parametro
+    $ db.clientes.update(
+        {{_id: ObjectId("35a1jnbasdhiud21acs8a4cs6a65asc5")}} <<<<<<<< lo que va a buscar
+        {
+            $set: {valor_extra: 'valor'}
+        }  <<<<<<<<<<<<<<<<<<<<<<< json que tiene que tener los cambios o llaves nuevas
+    )
 
